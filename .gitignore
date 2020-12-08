@@ -1,0 +1,7 @@
+*.pyc
+*.pth
+zhihudemo/demo.py
+zhihudemo/demo.ipynb
+train - 副本
+test - 副本
+zhihudemo/CaptchaDataSet copy.py

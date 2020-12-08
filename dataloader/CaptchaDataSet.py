@@ -26,7 +26,7 @@ class CaptchaData(Dataset):
     def __getitem__(self, index):
         # img_path, target = self.samples[index]
         img_name = self.img[index]
-        img_path = self.data_path + '\\' + img_name
+        img_path = os.path.join(self.data_path, img_name)
         if(self.img_label.__contains__(img_name)):
             target = self.img_label[img_name]
             target = self.text2vec(target)
@@ -81,7 +81,7 @@ class CaptchaData(Dataset):
             if(tmp_type == 'jpg' or tmp_type == 'jpeg' or tmp_type == 'png') :
                 img.append(img_name)
             if(tmp_type == 'csv') :
-                with open(self.data_path+'\\'+img_name) as f:
+                with open(os.path.join(self.data_path, img_name)) as f:
                     reader = csv.reader(f)
                     for row in reader:
                         try:

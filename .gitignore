@@ -1,5 +1,6 @@
 *.pyc
 *.pth
+*.csv
 zhihudemo/demo.py
 zhihudemo/demo.ipynb
 train - 副本

@@ -20,6 +20,8 @@ class NetTrain():
         self.headers = ['cv_acc','test_acc','running_loss']
 
     def save_net(self,filename = None):
+        if(os.path.exists(os.path.join(self.model_path,'trainer')) == False):
+            os.mkdir(os.path.join(self.model_path,'trainer'))
         path = os.path.join(self.model_path,'trainer',self.model_name+'.pth')
         # save model
         torch.save({
@@ -135,7 +137,7 @@ class NetTrain():
     def test(self,testdataset=None, setpath=None):
 
         if(testdataset == None and setpath != None):
-            testdataset = dataloader.CaptchaDataSet.CaptchaData(setpath+'\\test')
+            testdataset = dataloader.CaptchaDataSet.CaptchaData(os.path.join(setpath+'test'))
 
         testloader = torch.utils.data.DataLoader(dataset=testdataset, batch_size=self.batch_size, shuffle=False)
         dataset = dataloader.CaptchaDataSet.CaptchaData(premode=0)
@@ -151,7 +153,7 @@ class NetTrain():
         return np.mean(totalacc)
         
     def predict(self,setpath,outpath = None):
-        test_data = dataloader.CaptchaDataSet.CaptchaData(setpath+'\\predict')
+        test_data = dataloader.CaptchaDataSet.CaptchaData(os.path.join(setpath+'predict'))
         test_data_loader = DataLoader(test_data, batch_size=1, num_workers=0, shuffle=False)
         
         i = 1
